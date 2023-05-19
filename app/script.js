@@ -1,28 +1,25 @@
-import { todo } from "../class/todo"
-const toDoForm = document.querySelector('.todo-form')
-const toDoInput = document.querySelector('#inputTodo')
-const toDoList = document.getElementById('list')
-const  messageElement = document.getElementById('message')
+//  Function add to task 
+function addTask(){
+     var taskInput = document.getElementById('task-input');
+     var taskList = document.getElementById('taskList');
 
-//show message 
+     //  create  a new task item 
 
-const showMessage = (text ,  status) =>{
-    messageElement.textContent = text;
-    messageElement.classList.add(`bg-${status}`)
-    setTimeout(()=>{
-        messageElement.textContent = ' '
-        messageElement.classList.remove(`bg-${status}`)
-    }, 1000)
-}
-// creat todo
-const creatToDo = (newToDo) =>{
-const toDoElement = document.createElement('li')
-toDoElement.classList.add('li-style')
-toDoElement.innerHTML = `
-<span> ${newToDo.toDoValue}</span>
-<span> <button class='btn' id='delet-btn'><i class="fa-solid fa-trash"></i></button> </span>`
+     var  taskItem = document.createElement('li');
+     // input  field value 
+    //  var  inputfiledValue = taskInput.value
+     taskInput.textContent = taskInput.value;
+     taskList.appendChild(taskItem)
 
-toDoList.appendChild(toDoElement)
+     // save the task local storage 
+
+     var tasks =  JSON.parse(localStorage.getItem('tasks')) || []
+     tasks.push(taskInput.value);
+
+     // set  loacal  storage 
+     localStorage.setItem('tasks' , JSON.stringify(tasks)  )
+
+
 
 
 }
